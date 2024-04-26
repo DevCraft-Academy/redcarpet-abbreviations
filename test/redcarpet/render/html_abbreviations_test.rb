@@ -57,6 +57,18 @@ describe Redcarpet::Render::HTMLAbbreviations do
         <abbr title="États-Unis d'Amérique">É.-U. d'A.</abbr>
       EOS
     end
+
+    it "doesn't convert an abbreviation which is part of a word" do
+      markdown = <<-EOS.strip_heredoc
+        This is about the event `DOMContentLoaded`.
+
+        *[DOM]: Document Object Model
+      EOS
+
+      @renderer.new.preprocess(markdown).must_equal <<-EOS.strip_heredoc.chomp
+        This is about the event `DOMContentLoaded`.
+      EOS
+    end
   end
 
   describe "#acronym_regexp" do

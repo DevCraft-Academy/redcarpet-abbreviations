@@ -25,7 +25,7 @@ module Redcarpet
       end
 
       def acronym_regexp(acronym)
-        /\b#{acronym}((?<=.)|\b)/
+        /\b#{acronym}((?<=\.)|\b)/
       end
 
     end
